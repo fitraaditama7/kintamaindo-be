@@ -1,5 +1,5 @@
 -- Your SQL goes here
-CREATE TABLE chapter_images (
+CREATE TABLE IF NOT EXISTS chapter_images (
     id UUID PRIMARY KEY,
     chapter_id UUID NOT NULL,
     image_url TEXT NOT NULL,

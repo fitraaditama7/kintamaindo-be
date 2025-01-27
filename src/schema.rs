@@ -1,5 +1,11 @@
 // @generated automatically by Diesel CLI.
 
+pub mod sql_types {
+    #[derive(diesel::query_builder::QueryId, Clone, diesel::sql_types::SqlType)]
+    #[diesel(postgres_type(name = "manga_type_enum"))]
+    pub struct MangaTypeEnum;
+}
+
 diesel::table! {
     authors (id) {
         id -> Uuid,
@@ -65,6 +71,9 @@ diesel::table! {
 }
 
 diesel::table! {
+    use diesel::sql_types::*;
+    use super::sql_types::MangaTypeEnum;
+
     mangas (id) {
         id -> Uuid,
         #[max_length = 255]
@@ -87,6 +96,7 @@ diesel::table! {
         created_at -> Nullable<Timestamp>,
         updated_at -> Nullable<Timestamp>,
         deleted_at -> Nullable<Timestamp>,
+        manga_type -> MangaTypeEnum,
     }
 }
 
